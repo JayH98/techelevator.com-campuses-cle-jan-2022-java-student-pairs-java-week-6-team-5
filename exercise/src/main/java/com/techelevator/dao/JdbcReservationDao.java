@@ -26,7 +26,7 @@ public class JdbcReservationDao implements ReservationDao {
 
         return newId;
     }
- 
+
 
     private Reservation mapRowToReservation(SqlRowSet results) {
         Reservation r = new Reservation();
