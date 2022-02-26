@@ -19,7 +19,7 @@ public class JdbcCampgroundDao implements CampgroundDao {
     @Override
     public List<Campground> getCampgroundsByParkId(int parkId) {
         List<Campground> campgrounds = new ArrayList<>();
-        String sql = "SELECT park_id, name, open_from_mm, open_to_mm, daily_fee " +
+        String sql = "SELECT campground_id, park_id, name, open_from_mm, open_to_mm, daily_fee " +
                 " FROM campground " +
                 " WHERE park_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, parkId);
@@ -31,13 +31,13 @@ public class JdbcCampgroundDao implements CampgroundDao {
     }
 
     private Campground mapRowToCampground(SqlRowSet results) {
-        Campground camp = new Campground();
-        camp.setCampgroundId(results.getInt("campground_id"));
-        camp.setParkId(results.getInt("park_id"));
-        camp.setName(results.getString("name"));
-        camp.setOpenFromMonth(results.getInt("open_from_mm"));
-        camp.setOpenToMonth(results.getInt("open_to_mm"));
-        camp.setDailyFee(results.getDouble("daily_fee"));
-        return camp;
+        Campground campground = new Campground();
+        campground.setCampgroundId(results.getInt("campground_id"));
+        campground.setParkId(results.getInt("park_id"));
+        campground.setName(results.getString("name"));
+        campground.setOpenFromMonth(results.getInt("open_from_mm"));
+        campground.setOpenToMonth(results.getInt("open_to_mm"));
+        campground.setDailyFee(results.getDouble("daily_fee"));
+        return campground;
     }
 }
