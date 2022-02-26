@@ -12,18 +12,18 @@ public class Park {
     private int visitors;
     private String description;
 
-//    public Park() {}
-//
-//    public Park (Integer parkId, String name, String location, LocalDate establishDate,
-//                 Integer area, Integer visitors, String description) {
-//        this.parkId = parkId;
-//        this.name = name;
-//        this.location = location;
-//        this.establishDate = establishDate;
-//        this.area = area;
-//        this.visitors = visitors;
-//        this.description = description;
-//    }
+    public Park() {}
+
+    public Park (Integer parkId, String name, String location, LocalDate establishDate,
+                 Integer area, Integer visitors, String description) {
+        this.parkId = parkId;
+        this.name = name;
+        this.location = location;
+        this.establishDate = establishDate;
+        this.area = area;
+        this.visitors = visitors;
+        this.description = description;
+    }
 
     public int getParkId() {
         return parkId;

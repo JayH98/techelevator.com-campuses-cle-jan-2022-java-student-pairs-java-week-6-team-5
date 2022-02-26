@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class JdbcCampgroundDaoTests extends BaseDaoTests {
 
     private static final Campground CAMPGROUND_1 = new Campground(1, 1, "Test Campground 1", 1, 12, 35.0);
-    private static final Campground CAMPGROUND_2 = new Campground(2, 1, "Test Campground 2", 2, 12, 35.0);
+    private static final Campground CAMPGROUND_2 = new Campground(2, 1, "Test Campground 2", 1, 12, 35.0);
 
     private CampgroundDao dao;
 
@@ -24,7 +24,7 @@ public class JdbcCampgroundDaoTests extends BaseDaoTests {
     @Test
     public void getCampgrounds_Should_ReturnAllCampgrounds() {
         List<Campground> campgrounds = dao.getCampgroundsByParkId(1);
-        assertEquals(2,campgrounds.size());
+        assertEquals(2, campgrounds.size());
         assertCampgroundsMatch(CAMPGROUND_1, campgrounds.get(0));
         assertCampgroundsMatch(CAMPGROUND_2, campgrounds.get(1));
     }

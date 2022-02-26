@@ -10,6 +10,18 @@ public class Site {
     private int maxRvLength;
     private boolean utilities;
 
+    public Site (){}
+
+    public Site (Integer siteId, Integer campgroundId, Integer siteNumber, Integer maxOccupancy, Boolean accessible, Integer maxRvLength, Boolean utilities){
+        this.siteId = siteId;
+        this.campgroundId = campgroundId;
+        this.siteNumber = siteNumber;
+        this.maxOccupancy = maxOccupancy;
+        this.accessible = accessible;
+        this.maxRvLength = maxRvLength;
+        this.utilities = utilities;
+    }
+
     public int getSiteId() {
         return siteId;
     }
