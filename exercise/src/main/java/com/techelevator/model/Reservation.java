@@ -11,6 +11,19 @@ public class Reservation {
     private LocalDate toDate;
     private LocalDate createDate;
 
+    public Reservation () {}
+
+    public Reservation (Integer reservationId, Integer siteId, String name,
+                        LocalDate fromDate, LocalDate toDate, LocalDate createDate) {
+
+        this.reservationId = reservationId;
+        this.siteId = siteId;
+        this.name = name;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.createDate = createDate;
+    }
+
     public int getReservationId() {
         return reservationId;
     }
