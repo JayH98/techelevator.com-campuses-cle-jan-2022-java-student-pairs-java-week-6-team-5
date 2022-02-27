@@ -34,12 +34,4 @@ public class JdbcParkDaoTests extends BaseDaoTests {
 
     }
 
-//    private void assertParksMatch (Park expected, Park actual) {
-//        Assert.assertEquals(expected.getName(), actual.getName());
-//        Assert.assertEquals(expected.getLocation(), actual.getLocation());
-//        Assert.assertEquals(expected.getEstablishDate(), actual.getEstablishDate());
-//        Assert.assertEquals(expected.getArea(), actual.getArea());
-//        Assert.assertEquals(expected.getVisitors(), actual.getVisitors());
-//        Assert.assertEquals(expected.getDescription(), actual.getDescription());
-//    }
 }

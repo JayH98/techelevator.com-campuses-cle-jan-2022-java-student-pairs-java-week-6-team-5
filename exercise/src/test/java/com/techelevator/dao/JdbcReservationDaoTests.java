@@ -39,38 +39,21 @@ public class JdbcReservationDaoTests extends BaseDaoTests {
     }
 
     @Test
-    public void getReservation_Should_Return_Reservations_For_Next_Thirty_Days_By_ParkId(){
+    public void getReservation_Should_Return_Reservations_For_Next_Thirty_Days_By_ParkId() {
         List<Reservation> reservations = dao.getReservationByParkId(1);
-        assertEquals(3, reservations.size());
-        Assert.assertEquals(RESERVATION_1, reservations.get(0));
-        Assert.assertEquals(RESERVATION_3, reservations.get(1));
-        Assert.assertEquals(RESERVATION_4, reservations.get(2));
-
+        assertEquals(2, reservations.size());
+        assertReservationMatch(RESERVATION_1, reservations.get(0));
+        assertReservationMatch(RESERVATION_3, reservations.get(1));
     }
 
+    private void assertReservationMatch (Reservation expected, Reservation actual) {
+        Assert.assertEquals(expected.getReservationId(), actual.getReservationId());
+        Assert.assertEquals(expected.getSiteId(), actual.getSiteId());
+        Assert.assertEquals(expected.getName(), actual.getName());
+        Assert.assertEquals(expected.getFromDate(), actual.getFromDate());
+        Assert.assertEquals(expected.getToDate(), actual.getToDate());
+        Assert.assertEquals(expected.getCreateDate(), actual.getCreateDate());
 
-    //  @Test
-    //    public void getCampgrounds_Should_ReturnAllCampgrounds() {
-    //        List<Campground> campgrounds = dao.getCampgroundsByParkId(1);
-    //        assertEquals(2, campgrounds.size());
-    //        assertCampgroundsMatch(CAMPGROUND_1, campgrounds.get(0));
-    //        assertCampgroundsMatch(CAMPGROUND_2, campgrounds.get(1));
-    //    }
-
-    // public List<Reservation> getReservationByParkId(int parkId){
-    //        List<Reservation> reservations = new ArrayList<>();
-    //        String sql = "SELECT site_id, reservation.name, from_date, to_date, create_date " +
-    //                "FROM reservation " +
-    //                "JOIN site ON reservation.site_id = site.site_id " +
-    //                "JOIN campground ON site.campground_id = campground.campground_id " +
-    //                "JOIN park ON campground.park_id = park.park_id " +
-    //                "WHERE from_date BETWEEN create_date AND create_date + 30 AND park.park_id = ? " +
-    //                "ORDER BY from_date;";
-    //        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, parkId);
-    //        while (results.next()){
-    //            reservations.add(mapRowToReservation(results));
-    //        }
-    //        return reservations;
-    //    }
+    }
 
 }
