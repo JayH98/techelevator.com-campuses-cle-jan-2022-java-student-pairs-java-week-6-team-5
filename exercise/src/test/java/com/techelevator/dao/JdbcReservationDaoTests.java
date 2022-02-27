@@ -1,13 +1,25 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Reservation;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+
+
 public class JdbcReservationDaoTests extends BaseDaoTests {
+
+    LocalDate today = LocalDate.now();
+
+    private final Reservation RESERVATION_1 = new Reservation(1,1, "Test Testerson", today.plusDays(1), today.plusDays(5), today.minusDays(23));
+    private final Reservation RESERVATION_2 = new Reservation(2,1, "Bob Robertson", today.plusDays(11), today.plusDays(18), today.minusDays(23));
+    private final Reservation RESERVATION_3 = new Reservation(3,1, "Manager Managerson", today.minusDays(5), today.plusDays(2), today.minusDays(23));
+    private final Reservation RESERVATION_4 = new Reservation(4,1, "Leonard Leonardson", today.minusDays(11), today.minusDays(18), today.minusDays(23));
 
     private ReservationDao dao;
 
@@ -25,5 +37,40 @@ public class JdbcReservationDaoTests extends BaseDaoTests {
 
         assertEquals(5, reservationCreated);
     }
+
+    @Test
+    public void getReservation_Should_Return_Reservations_For_Next_Thirty_Days_By_ParkId(){
+        List<Reservation> reservations = dao.getReservationByParkId(1);
+        assertEquals(3, reservations.size());
+        Assert.assertEquals(RESERVATION_1, reservations.get(0));
+        Assert.assertEquals(RESERVATION_3, reservations.get(1));
+        Assert.assertEquals(RESERVATION_4, reservations.get(2));
+
+    }
+
+
+    //  @Test
+    //    public void getCampgrounds_Should_ReturnAllCampgrounds() {
+    //        List<Campground> campgrounds = dao.getCampgroundsByParkId(1);
+    //        assertEquals(2, campgrounds.size());
+    //        assertCampgroundsMatch(CAMPGROUND_1, campgrounds.get(0));
+    //        assertCampgroundsMatch(CAMPGROUND_2, campgrounds.get(1));
+    //    }
+
+    // public List<Reservation> getReservationByParkId(int parkId){
+    //        List<Reservation> reservations = new ArrayList<>();
+    //        String sql = "SELECT site_id, reservation.name, from_date, to_date, create_date " +
+    //                "FROM reservation " +
+    //                "JOIN site ON reservation.site_id = site.site_id " +
+    //                "JOIN campground ON site.campground_id = campground.campground_id " +
+    //                "JOIN park ON campground.park_id = park.park_id " +
+    //                "WHERE from_date BETWEEN create_date AND create_date + 30 AND park.park_id = ? " +
+    //                "ORDER BY from_date;";
+    //        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, parkId);
+    //        while (results.next()){
+    //            reservations.add(mapRowToReservation(results));
+    //        }
+    //        return reservations;
+    //    }
 
 }

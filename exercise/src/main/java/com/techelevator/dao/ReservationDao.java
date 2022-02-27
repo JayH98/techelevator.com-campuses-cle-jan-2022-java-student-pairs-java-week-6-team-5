@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ReservationDao {
 
+    List<Reservation> getReservationByParkId(int parkId);
+
     int createReservation(int siteId, String name, LocalDate fromDate, LocalDate toDate);
 
 }
